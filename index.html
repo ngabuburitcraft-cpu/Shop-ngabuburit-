@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ngabuburit CRAFT - Shop</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif; }
+  body { background: linear-gradient(135deg,#050510,#101020); color:white; min-height:100vh; }
+  header { background:#111; padding:20px; text-align:center; font-size:24px; font-weight:bold; color:#00ff99; box-shadow:0 0 15px #00ff99; }
+  .container { max-width:1000px; margin:20px auto; padding:0 20px; }
+  .card { background:rgba(17,17,17,0.9); margin:20px 0; padding:20px; border-radius:15px; box-shadow:0 0 15px #00ff99; transition:0.3s; }
+  .card:hover { transform:scale(1.03); box-shadow:0 0 25px #00ff99; }
+  h2 { margin-bottom:15px; color:#00ff99; }
+  button { padding:8px 15px; border:none; border-radius:10px; background:#00ff99; color:#000; font-weight:bold; cursor:pointer; margin:5px; transition:0.3s; }
+  button:hover { background:#00cc77; transform:scale(1.1); }
+  .item { display:flex; justify-content:space-between; align-items:center; margin:10px 0; padding:10px; background:rgba(0,255,153,0.1); border-radius:10px; }
+  input[type=number] { width:80px; padding:5px; border-radius:5px; border:none; }
+  footer { text-align:center; padding:15px; background:#111; color:#00ff99; margin-top:30px; font-size:14px; }
+</style>
+</head>
+<body>
+
+<header>🌙 Ngabuburit CRAFT - Shop 🌙</header>
+
+<div class="container">
+
+  <!-- Pilih Rank -->
+  <div class="card">
+    <h2>Pilih Rank Server</h2>
+    <div class="item"><span>Iron 🪨</span><button onclick="selectRank('Iron')">Pilih</button></div>
+    <div class="item"><span>Gold 🏅</span><button onclick="selectRank('Gold')">Pilih</button></div>
+    <div class="item"><span>Diamond 💎</span><button onclick="selectRank('Diamond')">Pilih</button></div>
+    <div class="item"><span>OverWorld 🌍</span><button onclick="selectRank('OverWorld')">Pilih</button></div>
+    <div class="item"><span>Nether 🔥</span><button onclick="selectRank('Nether')">Pilih</button></div>
+    <div class="item"><span>The End 🌌</span><button onclick="selectRank('The End')">Pilih</button></div>
+    <div class="item"><span>Space 🚀</span><button onclick="selectRank('Space')">Pilih</button></div>
+    <div class="item"><span>Fire 🔥</span><button onclick="selectRank('Fire')">Pilih</button></div>
+    <div class="item"><span>Water 💧</span><button onclick="selectRank('Water')">Pilih</button></div>
+    <div class="item"><span>Air 🌬️</span><button onclick="selectRank('Air')">Pilih</button></div>
+    <div class="item"><span>Legends 🏆</span><button onclick="selectRank('Legends')">Pilih</button></div>
+    <div class="item"><span>Pixel 🎨</span><button onclick="selectRank('Pixel')">Pilih</button></div>
+    <div class="item"><span>Hacker 💻</span><button onclick="selectRank('Hacker')">Pilih</button></div>
+    <div class="item"><span>VIP 🌟</span><button onclick="selectRank('VIP')">Pilih</button></div>
+  </div>
+
+  <!-- Beli Money -->
+  <div class="card">
+    <h2>Money Server 💰</h2>
+    <p>1M = 1RB</p>
+    <div class="item">
+      <span>Beli Coin</span>
+      <input type="number" id="moneyAmount" placeholder="Jumlah M" min="1">
+    </div>
+  </div>
+
+  <!-- Tombol beli gabungan -->
+  <div class="card">
+    <button style="width:100%" onclick="buyAll()">Beli Sekarang</button>
+  </div>
+
+  <!-- IP Server -->
+  <div class="card">
+    <h2>IP Server</h2>
+    <p>IP: <span id="ip">basic-1.alstore.space</span></p>
+    <p>Port: <span id="port">25660</span></p>
+    <button onclick="copyIP()">Copy IP</button>
+  </div>
+
+  <!-- Grup WA -->
+  <div class="card">
+    <h2>Grup WhatsApp</h2>
+    <p>Bergabung dengan komunitas pemain Ngabuburit CRAFT</p>
+    <button onclick="window.open('https://chat.whatsapp.com/Keo8k3IHIUbDRec695AtqN','_blank')">Gabung Sekarang</button>
+  </div>
+
+  <!-- Discord -->
+  <div class="card">
+    <h2>Discord</h2>
+    <p>Ngobrol langsung dengan komunitas di Discord</p>
+    <button onclick="window.open('https://discord.gg/qP5tqfQuU','_blank')">Join Discord</button>
+  </div>
+
+</div>
+
+<footer>© 2026 Ngabuburit CRAFT | Website by Febri.i</footer>
+
+<script>
+let selectedRank = null;
+
+// Pilih Rank
+function selectRank(rank){
+  if(selectedRank && selectedRank !== rank){
+    alert("Kamu hanya bisa pilih satu rank saja!");
+    return;
+  }
+  selectedRank = rank;
+  alert("Rank " + rank + " dipilih ✅");
+}
+
+// Copy IP
+function copyIP(){
+  const ip = document.getElementById("ip").innerText;
+  const port = document.getElementById("port").innerText;
+  navigator.clipboard.writeText(ip + ":" + port);
+  alert("IP server berhasil dicopy! 🚀");
+}
+
+// Beli gabungan rank + money
+function buyAll(){
+  const money = document.getElementById("moneyAmount").value;
+  if(!selectedRank && (!money || money < 1)){
+    alert("Pilih rank atau masukkan jumlah money minimal 1M!");
+    return;
+  }
+
+  const phoneNumber = "62881023660529"; // Nomor WA admin
+  let message = "Halo Min, saya mau beli ";
+
+  if(selectedRank){
+    message += `rank ${selectedRank}`;
+    if(money && money >= 1){
+      message += ` dan ${money}M coin`;
+    }
+  } else if(money && money >= 1){
+    message += `${money}M coin`;
+  }
+
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url,'_blank');
+}
+</script>
+
+</body>
+</html>
